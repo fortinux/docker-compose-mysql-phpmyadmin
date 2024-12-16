@@ -1,0 +1,38 @@
+name: MySQL-phpMyAdmin-Client
+
+services:
+  db:
+    image: mysql
+    restart: always
+    container_name: bd-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: bd-ejemplo
+      MYSQL_USER: usuario
+      MYSQL_PASSWORD: usuariopass
+    ports:
+      - "3306:3306"
+    volumes:
+      # Para configurar un volumen permanente
+      - db-data:/var/lib/mysql 
+      # - "./.mysql-data/db:/var/lib/mysql" 
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    container_name: phpmyadmin-mysql
+    environment:
+      PMA_HOST: db
+      PMA_USER: root
+      PMA_PASSWORD: rootpass
+    ports:
+      - "5000:80"
+  client:
+    restart: always
+    container_name: cliente-mysql
+    build:
+      dockerfile: Dockerfile
+      context: .
+    tty: true        
+volumes:
+  # Para configurar un volumen permanente
+  db-data:
