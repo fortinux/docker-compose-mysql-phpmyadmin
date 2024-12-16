@@ -2,7 +2,7 @@
   
 ## A docker compose with MySQL, phpMyAdmin and a container client lab. 
 
-- To run MySQL on port 3306, phpMyAdmin om port 5000 and a container with Ubuntu in order to work as a client:
+- To run MySQL on port 3306, phpMyAdmin on port 5000 and a container with Ubuntu in order to work as a client:
   
 `docker compose up -d` 
 
